@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="AppToolbarStyle" parent="Widget.AppCompat.Toolbar">
+        <item name="android:background">@color/colorPrimary</item>
+        <item name="android:windowDrawsSystemBarBackgrounds" tools:targetApi="21">true</item>
+        <item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="windowActionBar">false</item>
+        <item name="theme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
+        <item name="android:windowContentTransitions" tools:targetApi="21">true</item>
+        <item name="android:windowEnterTransition" tools:targetApi="21">@android:transition/fade</item>
+        <item name="android:windowExitTransition" tools:targetApi="21">@android:transition/fade</item>
+
+        <item name="android:windowSharedElementEnterTransition" tools:targetApi="21">@transition/expand_card</item>
+        <item name="android:windowSharedElementExitTransition" tools:targetApi="21">@transition/expand_card</item>
+
+    </style>
+</resources>

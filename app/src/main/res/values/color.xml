@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="list_item_title">#fff</color>
+    <color name="list_background">#303030</color>
+    <color name="list_background_pressed">#992416</color>
+    <color name="list_divider">#272727</color>
+    <color name="counter_text_bg">#626262</color>
+    <color name="counter_text_color">#c5c4c4</color>
+    <color name="tag_type_bg">#55d400</color>
+    <color name="tag_type_fg">#FFFFFF</color>
+    <color name="paymode_bg">#0022DD</color>
+    <color name="paymode_fg">#FFFFFF</color>
+    <color name="actionbar_bg">#FFFFFF</color>
+    <color name="actionbar_text">#000000</color>
+    <!-- Color primarios -->
+    <color name="textColorPrimary">#FFFFFF</color>
+    <color name="colorPrimary">#0066ff</color>
+    <color name="colorPrimaryGray">#0044aa</color>
+    <color name="colorPrimaryDark">#003380</color>
+    <color name="colorPrimaryDeepDark">#002255</color>
+    <!-- Color Acento -->
+    <color name="colorAccent">#ffd42a</color>
+</resources>
