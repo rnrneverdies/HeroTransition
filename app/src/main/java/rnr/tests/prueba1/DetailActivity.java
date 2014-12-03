@@ -4,6 +4,7 @@ import android.support.v4.view.ViewCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.transition.Transition;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,25 +13,26 @@ import android.widget.TextView;
 
 public class DetailActivity extends ActionBarActivity {
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        getWindow().requestFeature(android.view.Window.FEATURE_CONTENT_TRANSITIONS);
-        getWindow().requestFeature(android.view.Window.FEATURE_ACTION_BAR_OVERLAY);
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detail);
-        Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(mToolbar);
-        getSupportActionBar().setTitle("Detail Activity");
-        Bundle extras = getIntent().getExtras();
-        int mPositionRef = extras.getInt("position");
-        View base = findViewById(R.id.detail_layout);
-        View image = findViewById(R.id.imageView);
-        TextView text = (TextView) findViewById(R.id.txtLabel);
-        text.setText(extras.getString("text"));
-        ViewCompat.setTransitionName(base, "cardViewTransition" + mPositionRef);
-        ViewCompat.setTransitionName(image, "imageTransition" + mPositionRef);
-        ViewCompat.setTransitionName(text, "textTransition" + mPositionRef);
-    }
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+    getWindow().requestFeature(android.view.Window.FEATURE_CONTENT_TRANSITIONS);
+    getWindow().requestFeature(android.view.Window.FEATURE_ACTIVITY_TRANSITIONS);
+    getWindow().requestFeature(android.view.Window.FEATURE_ACTION_BAR_OVERLAY);
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_detail);
+    Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
+    setSupportActionBar(mToolbar);
+    getSupportActionBar().setTitle("Detail Activity");
+    Bundle extras = getIntent().getExtras();
+    int mPositionRef = extras.getInt("position");
+    View base = findViewById(R.id.detail_layout);
+    View image = findViewById(R.id.imageView);
+    TextView text = (TextView) findViewById(R.id.txtLabel);
+    text.setText(extras.getString("text"));
+    ViewCompat.setTransitionName(base, "cardViewTransition" + mPositionRef);
+    ViewCompat.setTransitionName(image, "imageTransition" + mPositionRef);
+    ViewCompat.setTransitionName(text, "textTransition" + mPositionRef);
+}
 
 
     @Override

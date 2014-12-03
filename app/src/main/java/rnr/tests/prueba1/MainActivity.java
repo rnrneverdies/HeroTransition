@@ -1,20 +1,18 @@
 package rnr.tests.prueba1;
 
-import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.util.Pair;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.app.ActionBarActivity;
-import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
@@ -31,6 +29,7 @@ public class MainActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         getWindow().requestFeature(android.view.Window.FEATURE_CONTENT_TRANSITIONS);
+        getWindow().requestFeature(android.view.Window.FEATURE_ACTIVITY_TRANSITIONS);
         getWindow().requestFeature(android.view.Window.FEATURE_ACTION_BAR_OVERLAY);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -47,27 +46,28 @@ public class MainActivity extends ActionBarActivity {
         mRecyclerView.setAdapter(mAdapter);
         final ActionBarActivity selfContext = this;
         mRecyclerView.addOnItemTouchListener(
-                new RecyclerItemClickListener(this, new RecyclerItemClickListener.OnItemClickListener() {
-                    @Override public void onItemClick(View view, int position) {
-                        Intent intent = new Intent(selfContext, DetailActivity.class);
+            new RecyclerItemClickListener(this, new RecyclerItemClickListener.OnItemClickListener() {
+                @Override public void onItemClick(View view, int position) {
+                    Intent intent = new Intent(selfContext, DetailActivity.class);
 
-                        View imageView = view.findViewById(R.id.imageView);
-                        TextView textView = (TextView)view.findViewById(R.id.textView);
+                    View imageView = view.findViewById(R.id.imageView);
+                    TextView textView = (TextView)view.findViewById(R.id.textView);
 
-                        Bundle extras = new Bundle();
-                        extras.putInt("position", position);
-                        extras.putString("text", textView.getText().toString());
-                        intent.putExtras(extras);
-                        String name = ViewCompat.getTransitionName(view);
-                        ActivityOptionsCompat options =
-                                ActivityOptionsCompat.makeSceneTransitionAnimation(selfContext,
-                                        Pair.create(view, ViewCompat.getTransitionName(view))
-                                        ,Pair.create(imageView, ViewCompat.getTransitionName(imageView))
-                                        ,Pair.create((View)textView, ViewCompat.getTransitionName(textView))
-                                );
-                        ActivityCompat.startActivity(selfContext, intent, options.toBundle());
-                    }
-                })
+                    Bundle extras = new Bundle();
+                    extras.putInt("position", position);
+                    extras.putString("text", textView.getText().toString());
+                    intent.putExtras(extras);
+                    //String name = ViewCompat.getTransitionName(view);
+                    ActivityOptionsCompat options =
+                            ActivityOptionsCompat.makeSceneTransitionAnimation(selfContext
+                                    ,Pair.create((View)textView, ViewCompat.getTransitionName(textView))
+                                    ,Pair.create(imageView, ViewCompat.getTransitionName(imageView))
+                                   // Commented due http://stackoverflow.com/questions/27258692/hero-transition-does-not-starts-from-the-expected-place
+                                   // ,Pair.create(view, ViewCompat.getTransitionName(view))
+                            );
+                    ActivityCompat.startActivity(selfContext, intent, options.toBundle());
+                }
+            })
         );
 
         producer(200);
